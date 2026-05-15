@@ -105,8 +105,11 @@ section { min-height: auto; padding: 8rem 9% 4rem; text-align: center; }
 /* রিং বা অরবিট সেটআপ */
 .orbit-ring {
     position: absolute;
+    top: 50%;
+    left: 50%;
     border-radius: 50%;
     border: 2px solid rgba(0, 171, 240, 0.08);
+    transform-origin: center center;
     animation: orbit-rotate linear infinite;
 }
 
@@ -149,8 +152,8 @@ section { min-height: auto; padding: 8rem 9% 4rem; text-align: center; }
 
 /* ঘোরার অ্যানিমেশন */
 @keyframes orbit-rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 /*  PROTFOLIO-PCITURE-Background/Animation-End  */
@@ -1393,35 +1396,50 @@ input, textarea { padding: 1.5rem; background: var(--bg-color); color: #fff; fon
 
 body {
     background: url('background.jpg') no-repeat center center/cover;
-    height: 100vh; 
-
-        min-height: 100vh;
+    min-height: 100vh;
+}
 
 /* Navbar Lock (Sticky) */
 .navbar {
-    background: rgba(0, 0, 0, 0.3);
-    height: 80px;
+    background: rgba(7, 12, 21, 0.92);
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
-    position: sticky; 
-    top: 0;
+    position: sticky;
+    top: 20px;
     z-index: 999;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+    padding: 0.8rem 0.6rem;
+    border: 1px solid rgba(0, 171, 240, 0.18);
+    border-radius: 999px;
+    margin: 0 1rem;
 }
 
 .navbar-container {
     display: flex;
     justify-content: space-between;
-    height: 80px;
-    z-index: 1;
-    width: 100%;
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 0 2rem;
+    align-items: center;
+    width: min(100%, 1240px);
+    gap: 1rem;
+}
+
+.navbar-menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-align: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-item {
+    display: flex;
     align-items: center;
 }
 
@@ -1437,23 +1455,22 @@ body {
     font-weight: bold;
 }
 
-.navbar-menu {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    text-align: center;
-    gap: 1rem;
+.navbar-links {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.9rem 1.4rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    transition: all 0.35s ease;
+    white-space: nowrap;
+    font-size: 1.35rem;
+    background: rgba(255, 255, 255, 0.04);
 }
 
-.navbar-links {
-    color: white;
-    text-decoration: none;
-    padding: 3px 20px;
-    border-radius: 20px;
-    border: 2px solid transparent;
-    transition: all 0.7s ease;
-    white-space: nowrap;
-    font-size: 1.3rem;
+.navbar-links:hover, .navbar-links.active {
+    background: rgba(0, 171, 240, 0.16);
+    color: #00abf0;
+    border-color: rgba(0, 171, 240, 0.32);
 }
 
 .navbar-links:hover, .navbar-links.active {
