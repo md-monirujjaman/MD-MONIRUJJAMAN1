@@ -1,11 +1,13 @@
-// Typing Animation
-const typed = new Typed('.text-animate', {
-    strings: ['React Developer', 'Full-Stack Developer', 'MERN Specialist'],
-    typeSpeed: 80,
-    backSpeed: 50,
-    backDelay: 1000,
-    loop: true
-});
+// Typing Animation (guarded)
+if (typeof Typed !== 'undefined' && document.querySelector('.text-animate')) {
+    new Typed('.text-animate', {
+        strings: ['React Developer', 'Full-Stack Developer', 'MERN Specialist'],
+        typeSpeed: 80,
+        backSpeed: 50,
+        backDelay: 1000,
+        loop: true
+    });
+}
 
 // mobile navbar start
 
@@ -13,22 +15,25 @@ const typed = new Typed('.text-animate', {
 const menu = document.querySelector('.navbar-menu');
 const menuBtn = document.querySelector('.navbar-toggle');
 
-// ২. হ্যামবার্গার আইকনে ক্লিক করলে মেনু ওপেন/ক্লোজ হবে
-menuBtn.addEventListener('click', function() {
-    menu.classList.toggle('active');      // মেনু স্লাইড করে আনবে
-    menuBtn.classList.toggle('is-active'); // আইকনটিকে X এ পরিণত করবে
-});
+// ২. হ্যামবার্গার আইকনে ক্লিক করলে মেনু ওপেন/ক্লোজ হবে (guarded)
+if (menuBtn && menu) {
+    menuBtn.addEventListener('click', function() {
+        menu.classList.toggle('active');      // মেনু স্লাইড করে আনবে
+        menuBtn.classList.toggle('is-active'); // আইকনটিকে X এ পরিণত করবে
+    });
+}
 
 // ৩. (অপশনাল) মেনুর কোনো লিংকে ক্লিক করলে মেনু অটোমেটিক বন্ধ হয়ে যাবে
 // এটি মোবাইল ইউজারদের জন্য খুব সুবিধাজনক
 const navLinks = document.querySelectorAll('.navbar-links, .letstalkbtn');
-
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        menu.classList.remove('active');
-        menuBtn.classList.remove('is-active');
+if (navLinks && navLinks.length) {
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (menu) menu.classList.remove('active');
+            if (menuBtn) menuBtn.classList.remove('is-active');
+        });
     });
-});
+}
 // mobile nabar end
 
 // Mobile Navbar Toggle
@@ -291,35 +296,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-async function askGeminiAI(prompt) {
-    // এখানে URL-টি ভালো করে লক্ষ্য করুন, কোনো স্পেস বা ভুল ক্যারেক্টার যেন না থাকে
-    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-
-    const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            contents: [{
-                parts: [{ text: `You are Aethera, the AI assistant of MD Monirujjaman. Answer this professionally: ${prompt}` }]
-            }]
-        })
-    };
-
-    try {
-        const response = await fetch(API_URL, requestOptions);
-        const data = await response.json();
-
-        // ৪০৪ এরর এবং ডাটা চেক করার জন্য এই অংশটি জরুরি
-        if (response.ok && data.candidates && data.candidates.length > 0) {
-            return data.candidates[0].content.parts[0].text;
-        } else {
-            // যদি এপিআই লিমিট শেষ হয় বা অন্য সমস্যা থাকে
-            console.error("API Error Details:", data);
-            return "I am currently unable to process your request. Please try again later.";
-        }
-    } catch (error) {
-        console.error("Network Error:", error);
-        return "Connection lost! Please check your internet.";
-    }
-}
 // ai bot end

@@ -1395,7 +1395,7 @@ body {
     background: url('background.jpg') no-repeat center center/cover;
     height: 100vh; 
 
-}
+        min-height: 100vh;
 
 /* Navbar Lock (Sticky) */
 .navbar {
@@ -1632,7 +1632,7 @@ body {
     height: 100vh;
     pointer-events: none;
     z-index: 9999;
-}
+        width: 100%;
 
 .magic-particle {
     position: absolute;
