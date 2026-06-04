@@ -683,33 +683,31 @@ I love solving problems and turning a blank canvas into a functional, revenue-ge
 
             <!-- contact-info-wrapper End -->
 
-            <!-- contact-from-start -->
-
-            <div class="contact-form-card">
-                <form action="#">
-                    <div class="input-box">
-                        <input type="text" placeholder="Full Name" required>
-                        <input type="email" placeholder="Email Address" required>
-                        
-                        <input type="text" placeholder="Subject" class="subject-full" required>
-                       
-                       <!-- <input type="text" placeholder="Subject" class="subject-input" required> -->
-                        <select name="service" required class="service-select">
-        <option value="" disabled selected>Select the service you need</option>
-        <option value="starter">Starter: Frontend Development</option>
-        <option value="pro">Pro: Database Design</option>
-        <option value="advanced">Advanced: Backend Development</option>
-        <option value="elite">Elite: Full Stack Development</option>
-    </select> 
-                    </div>
-                    <textarea cols="30" rows="10" placeholder="Your Message" required></textarea>
-                    <button type="submit" class="pg-send-btn" >Send Message</button>
-                </form>
-            </div>
+          <!-- contact-from-start -->
+<div class="contact-form-card">
+    <!-- action এ আপনার Formspree লিংক এবং method="POST" যুক্ত করা হয়েছে -->
+    <form action="https://formspree.io/f/xkoanalr" method="POST">
+        <div class="input-box">
+            <!-- প্রতিটি ইনপুটে name="something" যুক্ত করা হয়েছে -->
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            
+            <input type="text" name="subject" placeholder="Subject" class="subject-full" required>
+           
+            <select name="service" required class="service-select">
+                <option value="" disabled selected>Select the service you need</option>
+                <option value="starter">Starter: Frontend Development</option>
+                <option value="pro">Pro: Database Design</option>
+                <option value="advanced">Advanced: Backend Development</option>
+                <option value="elite">Elite: Full Stack Development</option>
+            </select> 
         </div>
-    </section>
-    <!-- contact-fromm-End -->
-
+        <!-- textarea তেও name="message" যুক্ত করা হয়েছে -->
+        <textarea name="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+        <button type="submit" class="pg-send-btn">Send Message</button>
+    </form>
+</div>
+<!-- contact-fromm-End -->
     
 <!-- footer section -->
 
